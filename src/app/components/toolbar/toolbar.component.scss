@@ -1,0 +1,101 @@
+.toolbar {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	padding: 4px 8px;
+	background-color: #1F1F1F;
+	border-radius: 32px;
+	color: white;
+	width: fit-content;
+
+	position: fixed;
+	bottom: 20px;
+	right: 20px;
+	z-index: 1000;
+}
+
+.profile-photo {
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+	margin-left: 8px;
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+}
+
+.firebase-logo {
+	width: 24px;
+	height: 24px;
+	flex-shrink: 0;
+	margin-left: 4px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	img {
+		width: 120%;
+		height: 120%;
+		transform-origin: center;
+		object-fit: cover;
+	}
+}
+
+.kebab-menu {
+	position: relative;
+	margin-left: 4px;
+}
+
+.kebab-button {
+	appearance: none;
+	background: transparent;
+	border: none;
+	color: white;
+	width: 28px;
+	height: 28px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 18px;
+	line-height: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.kebab-button:hover,
+.kebab-button:focus {
+	background: rgba(255, 255, 255, 0.08);
+	outline: none;
+}
+
+.menu-panel {
+	min-width: 140px;
+	background: #2A2A2A;
+	border: 1px solid rgba(255, 255, 255, 0.08);
+	border-radius: 8px;
+	box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+	padding: 4px;
+}
+
+.menu-item {
+	width: 100%;
+	text-align: left;
+	background: transparent;
+	border: none;
+	color: white;
+	padding: 8px 10px;
+	border-radius: 6px;
+	cursor: pointer;
+	font-size: 13px;
+}
+
+.menu-item:hover,
+.menu-item:focus {
+	background: rgba(255, 255, 255, 0.08);
+	outline: none;
+}

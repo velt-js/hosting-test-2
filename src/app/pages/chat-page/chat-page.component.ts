@@ -4,13 +4,14 @@ import { DocumentData } from '@angular/fire/firestore';
 import { FormsModule } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { ChatService } from 'src/app/services/chat.service';
+import { ToolbarComponent } from 'src/app/components/toolbar/toolbar.component';
 
 @Component({
   selector: 'app-chat-page',
   templateUrl: './chat-page.component.html',
   styleUrls: ['./chat-page.component.css'],
   standalone: true,
-  imports: [AsyncPipe, FormsModule]
+  imports: [AsyncPipe, FormsModule, ToolbarComponent]
 })
 export class ChatPageComponent {
   chatService = inject(ChatService);
