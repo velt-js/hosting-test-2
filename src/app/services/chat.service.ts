@@ -74,16 +74,65 @@ export class ChatService {
   }
 
   // Login Friendly Chat.
-  login() {}
+	login() {
+		signInWithPopup(this.auth, this.provider).then((result) => {
+			const credential = GoogleAuthProvider.credentialFromResult(result);
+			this.router.navigate(['/', 'chat']);
+			return credential;
+		})
+	}
 
   // Logout of Friendly Chat.
-  logout() {}
+	logout() {
+		signOut(this.auth).then(() => {
+			this.router.navigate(['/', 'login'])
+			console.log('signed out');
+		}).catch((error) => {
+			console.log('sign out error: ' + error);
+		})
+	}
 
   // Adds a text or image message to Cloud Firestore.
-  addMessage = async (
-    textMessage: string | null,
-    imageUrl: string | null
-  ): Promise<void | DocumentReference<DocumentData>> => {};
+	addMessage = async (
+		textMessage: string | null,
+		imageUrl: string | null,
+	): Promise<void | DocumentReference<DocumentData>> => {
+		// ignore empty messages
+		if (!textMessage && !imageUrl) {
+			console.log(
+				"addMessage was called without a message",
+				textMessage,
+				imageUrl,
+			);
+			return;
+		}
+
+		if (this.currentUser === null) {
+			console.log("addMessage requires a signed-in user");
+			return;
+		}
+
+		const message: ChatMessage = {
+			name: this.currentUser.displayName,
+			profilePicUrl: this.currentUser.photoURL,
+			timestamp: serverTimestamp(),
+			uid: this.currentUser?.uid,
+		};
+
+		textMessage && (message.text = textMessage);
+		imageUrl && (message.imageUrl = imageUrl);
+
+		try {
+			const newMessageRef = await addDoc(
+				collection(this.firestore, "messages"),
+				message,
+			);
+			return newMessageRef;
+		} catch (error) {
+			console.error("Error writing new message to Firebase Database", error);
+			return;
+		}
+	};
 
   // Saves a new message to Cloud Firestore.
   saveTextMessage = async (messageText: string) => {
@@ -91,9 +140,13 @@ export class ChatService {
   };
 
   // Loads chat messages history and listens for upcoming ones.
-  loadMessages = () => {
-    return null as unknown;
-  };
+	loadMessages = () => {
+		// Create the query to load the last 12 messages and listen for new ones.
+		const recentMessagesQuery = query(collection(this.firestore, 'messages'), orderBy('timestamp', 'desc'), limit(12));
+		// Start listening to the query.
+		return collectionData(recentMessagesQuery);
+	}
+
 
   // Saves a new message containing an image in Firebase.
   // This first saves the image in Firebase storage.
