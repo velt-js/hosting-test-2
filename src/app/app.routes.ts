@@ -14,9 +14,7 @@ const redirectLoggedInToHome = () => redirectLoggedInTo(['chat']);
 export const routes: Routes = [
 	{
 		path: '',
-		component: LoginPageComponent,
-		canActivate: [AuthGuard],
-		data: { authGuardPipe: redirectLoggedInToHome },
+		component: DashboardComponent,
 	},
 	{
 		path: 'login',
