@@ -44,10 +44,11 @@
 
 .menu li {
 	margin-bottom: 20px;
+	cursor: pointer;
 }
 
-.menu li a {
-	color: #fff;
+.menu li {
+	color: #ffffff8d;
 	text-decoration: none;
 	font-size: 16px;
 	display: flex;
@@ -55,6 +56,7 @@
 }
 
 .menu li.active {
+	color: #fff;
 	background-color: #333;
 	border-radius: 8px;
 	padding: 10px;

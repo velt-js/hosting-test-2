@@ -1,11 +1,12 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { AsyncPipe, CommonModule } from '@angular/common';
 import { ChatService } from 'src/app/services/chat.service';
+import { ToolbarComponent } from 'src/app/components/toolbar/toolbar.component';
 
 @Component({
 	selector: 'app-dashboard',
 	standalone: true,
-	imports: [AsyncPipe, CommonModule],
+	imports: [AsyncPipe, CommonModule, ToolbarComponent],
 	templateUrl: './dashboard.component.html',
 	styleUrl: './dashboard.component.css'
 })
