@@ -13,24 +13,15 @@ import { ToolbarComponent } from 'src/app/components/toolbar/toolbar.component';
 export class DashboardComponent implements OnInit {
 	chatService = inject(ChatService);
 	user$ = this.chatService.user$;
-	Math = Math;
-
-	recentActivity: { name: string, amount: number }[] = [];
+	transactions = [
+		{ name: 'Tribe Records', type: 'record', date: '22/08/2024', amount: 1066, recipient: '' },
+		{ name: 'J Dilla Beats', type: 'beats', date: '22/08/2024', amount: 888, recipient: '' },
+		{ name: 'De La Soul LLC', type: 'record', date: '22/08/2024', amount: 355, recipient: '' },
+		{ name: 'De La Soul LLC', type: 'record', date: '22/08/2024', amount: 331, recipient: '' },
+		{ name: 'De La Soul LLC', type: 'record', date: '22/08/2024', amount: -999, recipient: '' }
+	];
 
 	ngOnInit(): void {
-		this.generateRandomActivity();
 	}
 
-	generateRandomActivity(): void {
-		const companies = ['ATCQ Inc.', 'De La Soul LLC', 'J Dilla Beats', 'MF DOOM Rhymes', 'Tribe Records'];
-		this.recentActivity = [];
-		for (let i = 0; i < 5; i++) {
-			const company = companies[Math.floor(Math.random() * companies.length)];
-			let amount = Math.floor(Math.random() * 1000) + 100;
-			if (Math.random() < 0.5) {
-				amount *= -1;
-			}
-			this.recentActivity.push({ name: company, amount: amount });
-		}
-	}
 }

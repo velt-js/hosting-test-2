@@ -262,3 +262,7 @@
 .dropdown:hover .dropdown-menu {
 	display: block;
 }
+
+/* td:has(> snippyly-comment-pin-portal) {
+	outline: 1px solid yellow;
+} */

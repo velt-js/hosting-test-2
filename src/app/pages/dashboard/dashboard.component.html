@@ -66,74 +66,52 @@
 				<button class="filter-btn">Last 6 Months</button>
 			</div>
 			<div class="summary-cards">
-				<div class="card">
+				<div class="card" id="total-balance" data-velt-target-comment-element-id="total-balance">
 					<h2>$52,000</h2>
 					<p>Total Balance</p>
 				</div>
-				<div class="card">
+				<div class="card" id="income" data-velt-target-comment-element-id="income">
 					<h2>$32,040</h2>
 					<p>Income</p>
 				</div>
-				<div class="card">
+				<div class="card" id="expenses" data-velt-target-comment-element-id="expenses">
 					<h2>$5,125</h2>
 					<p>Expenses</p>
 				</div>
-				<div class="card">
+				<div class="card" id="savings" data-velt-target-comment-element-id="savings">
 					<h2>$31,523</h2>
 					<p>Savings</p>
 				</div>
 			</div>
-			<div class="main-chart-container">
-				<div class="chart">
-					<div class="chart-content">
-						<div class="y-axis">
-							<span>4k</span>
-							<span>3k</span>
-							<span>2k</span>
-							<span>1k</span>
-							<span>0</span>
-						</div>
-						<div class="chart-bars">
-							<div class="bar-group">
-								<div class="bar income" style="height: 80%;"></div>
-								<div class="bar expenses" style="height: 40%;"></div>
-								<span class="month">Jan</span>
-							</div>
-							<div class="bar-group">
-								<div class="bar income" style="height: 70%;"></div>
-								<div class="bar expenses" style="height: 45%;"></div>
-								<span class="month">Feb</span>
-							</div>
-							<div class="bar-group">
-								<div class="bar income" style="height: 85%;"></div>
-								<div class="bar expenses" style="height: 20%;"></div>
-								<span class="month">Mar</span>
-							</div>
-							<div class="bar-group">
-								<div class="bar income" style="height: 75%;"></div>
-								<div class="bar expenses" style="height: 60%;"></div>
-								<span class="month">Apr</span>
-							</div>
-							<div class="bar-group">
-								<div class="bar income" style="height: 90%;"></div>
-								<div class="bar expenses" style="height: 40%;"></div>
-								<span class="month">May</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="recent-activity">
-					<h3>Recent Activity</h3>
-					<ul>
-						<li *ngFor="let activity of recentActivity">
-							<span>{{ activity.name }}</span>
-							<span class="amount" [class.negative]="activity.amount < 0">
-								{{ activity.amount > 0 ? '+' : '-' }} ${{ Math.abs(activity.amount) }}
-							</span>
-						</li>
-					</ul>
-					<button class="view-all-btn">View All</button>
-				</div>
+			<div class="w-full">
+				<table class="w-full text-white">
+					<thead>
+						<tr>
+							<th class="text-left p-2">NAME</th>
+							<th class="text-left p-2">TYPE</th>
+							<th class="text-left p-2">DATE</th>
+							<th class="text-left p-2">AMOUNT</th>
+							<th class="text-left p-2">Recipient</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr *ngFor="let transaction of transactions; let i = index" class="border-b border-gray-700">
+							<td class="p-2" [id]="'name-' + i" [attr.data-velt-target-comment-element-id]="'name-' + i">{{
+								transaction.name }}</td>
+							<td class="p-2" [id]="'type-' + i" [attr.data-velt-target-comment-element-id]="'type-' + i">{{
+								transaction.type }}</td>
+							<td class="p-2" [id]="'date-' + i" [attr.data-velt-target-comment-element-id]="'date-' + i">{{
+								transaction.date }}</td>
+							<td class="p-2" [id]="'amount-' + i" [attr.data-velt-target-comment-element-id]="'amount-' + i"
+								[ngClass]="transaction.amount > 0 ? 'text-green-500' : 'text-red-500'">
+								{{ transaction.amount > 0 ? '+' : '' }}${{ transaction.amount }}
+							</td>
+							<td class="p-2" [id]="'recipient-' + i" [attr.data-velt-target-comment-element-id]="'recipient-' + i">{{
+								transaction.recipient }}</td>
+						</tr>
+					</tbody>
+				</table>
+
 			</div>
 		</div>
 	</main>

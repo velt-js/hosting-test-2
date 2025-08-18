@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.velt-comment-pin--popover{
+	border-color: transparent yellow transparent transparent !important;
+}
